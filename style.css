@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    background: url('https://static.vecteezy.com/system/resources/thumbnails/005/485/680/original/glittering-particle-streaks-seamless-looping-raining-glowing-glitter-particles-seamless-looping-motion-background-animated-backdrop-loop-blue-color-free-video.jpg'), no-repeat center center/cover;
+}
+
+.inline {
+    display: inline;
+}
+
+.container {
+    background-color: rgba(209, 209, 209, 0.2);
+    width: 100%;
+    max-width: 50rem;
+    margin: auto;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 2rem;
+    color: whitesmoke;
+    padding: 4rem 3rem;
+    position: relative;
+}
+
+form input {
+    width: 40rem;
+    height: 3rem;
+    border-radius: 5rem;
+    padding: 2rem;
+
+}
+
+form .submit-btn {
+    background-color: rgba(40, 39, 128, 1);
+    position: absolute;
+    right: 5.1rem;
+    border-radius: 5rem;
+    width: 5rem;
+    height: 4.5rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.6rem;
+    color: white;
+    border: 1px solid black;
+
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    align-items: flex-start;
+
+}
+
+ul li {
+    margin: 1rem;
+}
+ 
+
+.edit-btn {
+    padding: 1rem;
+    cursor: pointer;
+    background-color: green;
+    position: fixed;
+    right: 45rem;
+    border: 1px solid black;
+
+
+}
+
+.delete-btn {
+    padding: 0.9rem;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: rgb(167, 80, 80);
+    position: fixed;
+    right: 41rem;
+}
+
+.updatebtn {
+    background-color: rgb(36, 36, 36);
+    
+    color:  snow;
+    padding: 0.9rem;
+    border: 1px solid black;
+    cursor: pointer;
+    position: fixed;
+    right: 41rem;
+    display: inline-block;
+  
+}
+
+.complete {
+    text-decoration: line-through;
+}
+
+.textinput {
+    width: 35rem;
+    height: 2.5rem;
+    border-radius: 50rem;
+    border: 1.5px solid black;
+    display: inline-block;
+}
