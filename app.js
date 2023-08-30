@@ -1,93 +1,99 @@
 
-let unlist = document.querySelector("ul")
-let form = document.querySelector('.form')
+    const unlist = document.querySelector("ul");
+    const form = document.querySelector('.form');
 
-//adding a todo
-form.addEventListener('submit',(e)=>{
-    e.preventDefault();
-    const NewGoal = e.target.goal.value
+    // Load data from local storage
+    if (localStorage.getItem("data")) {
+        unlist.innerHTML = localStorage.getItem("data");
+    }
 
-    const li = document.createElement('li');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-    const p = document.createElement('p');
-    p.setAttribute('class','inline')
+        const NewGoal = e.target.goal.value;
 
-    p.textContent = NewGoal;
+        const li = document.createElement('li');
 
-    textInput = document.createElement('input')
-    textInput.setAttribute('type', 'text');
+        const p = document.createElement('p');
+        p.setAttribute('class', 'inline');
+        p.textContent = NewGoal;
 
-    const editBtn = document.createElement('button');
-    const deleteBtn = document.createElement('button');
-    const updateBtn = document.createElement('button');
+        const textInput = document.createElement('input');
+        textInput.setAttribute('type', 'text');
+        textInput.style.display = 'none';
 
-    editBtn.setAttribute('type','button')
-    editBtn.setAttribute('class','edit-btn')
-    
-    deleteBtn.setAttribute('type','button')
-    deleteBtn.setAttribute('class','delete-btn')
+        const editBtn = document.createElement('button');
+        const deleteBtn = document.createElement('button');
+        const updateBtn = document.createElement('button');
 
-    const editIcon = document.createElement('i')
-    const deleteIcon = document.createElement('i')
-    const UpdateIcon = document.createElement('i')
+        editBtn.setAttribute('type', 'button');
+        editBtn.setAttribute('class', 'edit-btn');
 
-    editIcon.setAttribute("class",'fa-solid fa-pen-to-square')
-    deleteIcon.setAttribute('class',' bx bxs-trash-alt')
-    
-    editBtn.appendChild(editIcon)
-    deleteBtn.appendChild(deleteIcon)
-    UpdateIcon.setAttribute('class', 'fa-sharp fa-solid fa-check');
+        deleteBtn.setAttribute('type', 'button');
+        deleteBtn.setAttribute('class', 'delete-btn');
 
-    updateBtn.appendChild(UpdateIcon);
+        updateBtn.setAttribute('class', 'updatebtn');
 
-    li.appendChild(p);
-    li.appendChild(textInput);
-    li.appendChild(editBtn);
-    li.appendChild(deleteBtn);
-    li.appendChild(updateBtn);
-    unlist.appendChild(li);
+        const editIcon = document.createElement('i');
+        const deleteIcon = document.createElement('i');
+        const updateIcon = document.createElement('i');
 
-    textInput.style.display = 'none';
-    updateBtn.style.display = 'none';
-SavaData();
+        editIcon.setAttribute('class', 'fa-solid fa-pen-to-square');
+        deleteIcon.setAttribute('class', 'fas fa-trash');
+        updateIcon.setAttribute('class', 'fas fa-check');
 
-//completed function
-p.addEventListener("click",()=>{
-    p.classList.toggle('complete')
+        editBtn.appendChild(editIcon);
+        deleteBtn.appendChild(deleteIcon);
+        updateBtn.appendChild(updateIcon);
+updateBtn.style.display = 'none'
+        // Completed function
+        p.addEventListener("click", () => {
+            p.classList.toggle('complete');
+            saveData();
+        });
 
-})
+        // Delete function
+        deleteBtn.addEventListener("click", () => {
+            li.style.display = "none";
+            saveData();
+        });
 
-//delete  function
-deleteBtn.addEventListener("click",()=>{
-    li.style.display="none";
+        // Edit function
+        editBtn.addEventListener('click', () => {
+            textInput.style.display = "inline-block";
+            updateBtn.style.display = "inline-block";
+            p.style.display = 'none';
+            deleteBtn.style.display = "none";
+            editBtn.style.display = 'none';
+        });
 
-})
+        // Update function 
+        updateBtn.addEventListener('click', () => {
+            p.style.display = "inline-block";
+            p.textContent = textInput.value;
+            textInput.style.display = 'none';
+            updateBtn.style.display = 'none';
+            editBtn.style.display = "inline-block";
+            deleteBtn.style.display = "inline-block";
+            saveData();
+        });
 
- //edit function
-    editBtn.addEventListener('click',()=>{
-        textInput.setAttribute('class','textinput')
-        updateBtn.setAttribute('class','updatebtn')
-        textInput.style.display = "inline-block";
-        updateBtn.style.display = "inline-block";
-        p.style.display = 'none';
-        deleteBtn.style.display = "none";
-        editBtn.style.display = 'none';
-    
-       
+        // Append elements to the li
+        li.appendChild(p);
+        li.appendChild(textInput);
+        li.appendChild(editBtn);
+        li.appendChild(deleteBtn);
+        li.appendChild(updateBtn);
 
-    })
-//update function 
-updateBtn.addEventListener('click',()=>{
-    p.style.display = "inline-block";
-    p.textContent = textInput.value
-    textInput.style.display = 'none';
-    updateBtn.style.display = 'none';
-    editBtn.style.display = "inline-block";
-    deleteBtn.style.display= "inline-block";
+        unlist.appendChild(li);
 
-})
-})
+        // Save data to local storage
+        saveData();
 
-function SavaData(){
-    localStorage.setItem("data",unlist.innerHTML)
-}
+        // Reset form input
+        e.target.goal.value = '';
+    });
+
+    function saveData() {
+        localStorage.setItem("data", unlist.innerHTML);
+    }
